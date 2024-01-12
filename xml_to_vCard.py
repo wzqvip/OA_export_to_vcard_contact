@@ -37,9 +37,9 @@ def parse_xml_data(data):
             elif 'labelid="6086"'in col  and "CDATA" in col:  # Position
                 ORG += " " + col.split("><![CDATA[")[1].split("]]></col>")[0]
             elif 'labelid="620"' in col:  # Mobile Telephone
-                TEL = col.split('value="')[1].split('"><!')[0]
+                TEL = col.split('value="')[1].split('"><!')[0].split('"')[0]
             elif 'labelid="477"' in col:  # E-Mail
-                EMAIL = col.split('value="')[1].split('"><!')[0]
+                EMAIL = col.split('value="')[1].split('"><!')[0].split('"')[0]
             elif 'labelid="714"'in col  and "CDATA" in col:  # WorkCode
                 TITLE = col.split("><![CDATA[")[1].split("]]></col>")[0]
             elif 'labelid="416"'in col  and "CDATA" in col:
@@ -95,10 +95,10 @@ if __name__ == "__main__":
     vcards = parse_xml_data(xml)
     
     # for vcard in vcards:
-    #     print((vcard))
+        # print((vcard))
     
     write_vcard("OA_2023_xml.vcf", vcards)
-    
+
     print("Done!")
     
     
