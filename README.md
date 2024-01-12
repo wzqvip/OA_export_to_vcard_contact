@@ -1,0 +1,2 @@
+# OA_export_to_vcard_contact
+ 上科大OA系统人员保存为通讯录供邮箱使用
