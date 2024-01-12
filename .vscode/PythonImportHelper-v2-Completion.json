@@ -1,0 +1,101 @@
+[
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "parse_text",
+        "kind": 2,
+        "importPath": "vcardGen",
+        "description": "vcardGen",
+        "peekOfCode": "def parse_text(text):\n    lines = text.split(\"\\n\")\n    vcards = []\n    for line in lines:\n        parts = line.split(\"\\t\")\n        FN, ORG, TEL, EMAIL, NOTE, TITLE = \"\", \"\", \"\", \"\", \"\", \"\"\n        info = {}\n        # print(parts)\n        # print(len(parts))\n        if len(parts) == 1:",
+        "detail": "vcardGen",
+        "documentation": {}
+    },
+    {
+        "label": "generate_vcard",
+        "kind": 2,
+        "importPath": "vcardGen",
+        "description": "vcardGen",
+        "peekOfCode": "def generate_vcard(vcard):\n    vcard_template = \"\"\"BEGIN:VCARD\nVERSION:3.0\nFN:{FN}\nORG:{ORG}\nTEL;TYPE=CELL:{TEL}\nEMAIL:{EMAIL}\nNOTE:{NOTE}\nTITLE:{TITLE}\nUID:{UID}",
+        "detail": "vcardGen",
+        "documentation": {}
+    },
+    {
+        "label": "read_txt",
+        "kind": 2,
+        "importPath": "vcardGen",
+        "description": "vcardGen",
+        "peekOfCode": "def read_txt(filename):\n    with open(filename, \"r\", encoding=\"utf-8\") as f:\n        text = f.read()\n    return text\ndef write_vcard(filename, vcards):\n    with open(filename, \"w\", encoding=\"utf-8\") as f:\n        for vcard in vcards:\n            f.write(generate_vcard(vcard))\n            f.write(\"\\n\")\ndef autocheck(vcard1,vcard2):",
+        "detail": "vcardGen",
+        "documentation": {}
+    },
+    {
+        "label": "write_vcard",
+        "kind": 2,
+        "importPath": "vcardGen",
+        "description": "vcardGen",
+        "peekOfCode": "def write_vcard(filename, vcards):\n    with open(filename, \"w\", encoding=\"utf-8\") as f:\n        for vcard in vcards:\n            f.write(generate_vcard(vcard))\n            f.write(\"\\n\")\ndef autocheck(vcard1,vcard2):\n    # if the text in 1 has \"*\" at the end, it's a bad number. Use the info in text2 to replace it.\n    # if the info in 2 is not in 1, add it to 1.\n    for i in range(len(vcard1)):\n        if vcard1[i][\"TEL\"][-1] == \"*\":",
+        "detail": "vcardGen",
+        "documentation": {}
+    },
+    {
+        "label": "autocheck",
+        "kind": 2,
+        "importPath": "vcardGen",
+        "description": "vcardGen",
+        "peekOfCode": "def autocheck(vcard1,vcard2):\n    # if the text in 1 has \"*\" at the end, it's a bad number. Use the info in text2 to replace it.\n    # if the info in 2 is not in 1, add it to 1.\n    for i in range(len(vcard1)):\n        if vcard1[i][\"TEL\"][-1] == \"*\":\n            # use TITLE to find the same person in vcard2\n            for j in range(len(vcard2)):\n                if vcard1[i][\"TITLE\"] == vcard2[j][\"TITLE\"]:\n                    if vcard2[j][\"TEL\"][-1] != \"*\":\n                        print(\"replace \" + vcard1[i][\"TEL\"] + \" with \" + vcard2[j][\"TEL\"])",
+        "detail": "vcardGen",
+        "documentation": {}
+    },
+    {
+        "label": "check_duplicate",
+        "kind": 2,
+        "importPath": "vcardGen",
+        "description": "vcardGen",
+        "peekOfCode": "def check_duplicate(vcard):\n    # check if there is duplicate in the list\n    for i in range(len(vcard)):\n        for j in range(i+1,len(vcard)):\n            if vcard[i][\"TITLE\"] == vcard[j][\"TITLE\"]:\n                print(\"duplicate found\")\n                print(vcard[i])\n                print(vcard[j])\n    return False\nif __name__ == \"__main__\":",
+        "detail": "vcardGen",
+        "documentation": {}
+    },
+    {
+        "label": "parse_xml_data",
+        "kind": 2,
+        "importPath": "xml_to_vCard",
+        "description": "xml_to_vCard",
+        "peekOfCode": "def parse_xml_data(data):\n    # Splits the data into rows\n    lines = data.split('<row rowClick=\"\">')[1:]\n    vcards = []\n    for line in lines:\n        parts = line.split(\"<col \")\n        FN, ORG, TEL, EMAIL, NOTE, TITLE = \"\", \"\", \"\", \"\", \"\", \"\"\n        info = {}\n        for col in parts:\n            if 'labelid=\"413\"'in col  and \"CDATA\" in col:  # Name",
+        "detail": "xml_to_vCard",
+        "documentation": {}
+    },
+    {
+        "label": "generate_vcard",
+        "kind": 2,
+        "importPath": "xml_to_vCard",
+        "description": "xml_to_vCard",
+        "peekOfCode": "def generate_vcard(vcard):\n    vcard_template = \"\"\"BEGIN:VCARD\nVERSION:3.0\nFN:{FN}\nORG:{ORG}\nTEL;TYPE=CELL:{TEL}\nEMAIL:{EMAIL}\nNOTE:{NOTE}\nTITLE:{TITLE}\nUID:{UID}",
+        "detail": "xml_to_vCard",
+        "documentation": {}
+    },
+    {
+        "label": "read_txt",
+        "kind": 2,
+        "importPath": "xml_to_vCard",
+        "description": "xml_to_vCard",
+        "peekOfCode": "def read_txt(filename):\n    with open(filename, \"r\", encoding=\"utf-8\") as f:\n        text = f.read()\n    return text\ndef write_vcard(filename, vcards):\n    with open(filename, \"w\", encoding=\"utf-8\") as f:\n        for vcard in vcards:\n            f.write(generate_vcard(vcard))\n            f.write(\"\\n\")\nif __name__ == \"__main__\":",
+        "detail": "xml_to_vCard",
+        "documentation": {}
+    },
+    {
+        "label": "write_vcard",
+        "kind": 2,
+        "importPath": "xml_to_vCard",
+        "description": "xml_to_vCard",
+        "peekOfCode": "def write_vcard(filename, vcards):\n    with open(filename, \"w\", encoding=\"utf-8\") as f:\n        for vcard in vcards:\n            f.write(generate_vcard(vcard))\n            f.write(\"\\n\")\nif __name__ == \"__main__\":\n    xml = read_txt(\"OA_2023.xml\")\n    vcards = parse_xml_data(xml)\n    # for vcard in vcards:\n    #     print((vcard))",
+        "detail": "xml_to_vCard",
+        "documentation": {}
+    }
+]
